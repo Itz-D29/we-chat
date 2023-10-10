@@ -8,6 +8,7 @@ import 'package:wechat/utility/dialogs.dart';
 import 'package:wechat/utility/my_date_util.dart';
 
 import '../main.dart';
+import '../screens/video_design_screen.dart';
 
 class MessageCard extends StatefulWidget {
   const MessageCard({super.key, required this.message});
@@ -43,21 +44,21 @@ class _MessageCardState extends State<MessageCard> {
       children: [
         Container(
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 221, 245, 255),
+            color: Color.fromRGBO(116, 213, 242, 0.5),
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30)),
+                topRight: Radius.circular(15),
+                topLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15)),
           ),
-          margin: EdgeInsets.symmetric(
-              vertical: mq.height * .01, horizontal: mq.width * .04),
-          padding: EdgeInsets.all(widget.message.type == Type.image ? mq.width * .03 : mq.width * .04),
+          margin: const EdgeInsets.only(
+              left: 15, right: 150,top: 22,bottom: 10),
+          padding: EdgeInsets.all(widget.message.type == Type.image ? mq.width * .03 : mq.width * .03),
           child: widget.message.type == Type.text
               ? Text(
                   widget.message.msg,
                   style: const TextStyle(color: Colors.black87, fontSize: 15),
                 )
-              : ClipRRect(
+              : widget.message.type == Type.image ?  ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CachedNetworkImage(
                   placeholder: (context, url) => const Padding(
@@ -70,7 +71,7 @@ class _MessageCardState extends State<MessageCard> {
                       size: 70,
                     ),
                   ),
-              ),
+              ) : VideoDesignScreen(message: widget.message),
         ),
         Padding(
           padding: EdgeInsets.only(left: mq.width * .03),
@@ -92,16 +93,16 @@ class _MessageCardState extends State<MessageCard> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Container(
-          decoration: const BoxDecoration(
+          decoration:  const BoxDecoration(
             color: Color.fromARGB(255, 218, 255, 176),
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30)),
+                topRight: Radius.circular(15),
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15)),
           ),
-          margin: EdgeInsets.symmetric(
-              vertical: mq.height * .01, horizontal: mq.width * .04),
-          padding: EdgeInsets.all(widget.message.type == Type.image ? mq.width * .03 : mq.width * .04),
+          margin: const EdgeInsets.only(
+            right: 15, left: 150,top: 22,bottom: 10),
+          padding: EdgeInsets.all(widget.message.type == Type.image ? mq.width * .03 : mq.width * .03),
           child: widget.message.type == Type.text
               ? Text(
                   widget.message.msg,
@@ -120,20 +121,7 @@ class _MessageCardState extends State<MessageCard> {
                       size: 70,
                     ),
                   ),
-          ) : ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: CachedNetworkImage(
-              placeholder: (context, url) => const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(strokeWidth: 2,),
-              ),
-              imageUrl: widget.message.msg,
-              errorWidget: (context, url, error) => const Icon(
-                Icons.video_call,
-                size: 70,
-              ),
-            ),
-          ),
+          ) : VideoDesignScreen(message: widget.message),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

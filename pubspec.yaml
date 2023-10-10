@@ -43,6 +43,7 @@ dependencies:
   http: ^0.13.3
   flutter_notification_channel: ^2.0.0
   gallery_saver: ^2.3.2
+  video_player: ^2.7.2
 
 dev_dependencies:
   flutter_test:

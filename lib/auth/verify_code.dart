@@ -31,7 +31,7 @@ class _VerifyCodeState extends State<VerifyCode> {
           children: [
             const Icon(CupertinoIcons.lock,size: 150,color: Colors.black,),
             const SizedBox(height: 50),
-            Text(
+            const Text(
               'Enter Your OTP',
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 18),
